@@ -5,6 +5,16 @@ class App extends React.Component {
                 <h1>Slot Machines!</h1>
                 <Machine
                  s1="x"
+                 s2="y"
+                 s3="z"
+                />
+                <Machine
+                 s1="x"
+                 s2="x"
+                 s3="x"
+                />
+                <Machine
+                 s1="z"
                  s2="x"
                  s3="z"
                 />
