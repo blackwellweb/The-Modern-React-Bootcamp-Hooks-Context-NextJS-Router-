@@ -13,7 +13,7 @@ console.log(`Here you go: ${randomFruit}`)
 console.log('Delicious! May I have another?');
 
 remove(fruits,randomFruit);
-console.log(`I’m sorry, we’re all out. We have ${fruits.length} left.`)
+console.log(`I’m sorry, we’re all out. We have ${fruits.length} left.`);
 
 
 class App extends React.Component {
