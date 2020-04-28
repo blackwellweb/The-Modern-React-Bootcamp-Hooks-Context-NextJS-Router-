@@ -18,8 +18,8 @@ class Pokecard extends React.Component {
     };
 
     render() {
-        
-        // Function that allows us to get a random Pokemon Character
+
+        // Function will return a random Pokemon Character
         function getRandomPokemon(items) {
             let randomPokemon = items[Math.floor(Math.random() * items.length)];
 
@@ -32,10 +32,27 @@ class Pokecard extends React.Component {
         // Fire our getRandomPokemon and assign it to a variable
         let pokemon = getRandomPokemon(this.props.PokemonCharacters);
 
+
+
+        // This function will pad an ID with zeros to three places, like: 001, 002, 034, 199, etc. 
+        // This is because the image source work if the images aren’t padded with zeros
+        function padImage(id) {
+
+            let newId = id.toString();
+    
+            for (let i = 0; i < newId.length; i++) {
+                if(newId.length < 3){
+                    newId = '0' + newId; // Add a zero to the start of Id
+                }
+            }
+            return(newId); 
+        }
+
+
         return (
             <div className="Pokecard">
                 <h1 className="Pokecard-name">{pokemon.name}</h1>
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} alt={pokemon.name}></img>
+                <img className="Pokecard-img" src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padImage(pokemon.id)}.png`} alt={pokemon.name}></img>
                 <span className="Pokecard-type">Type: {pokemon.type}</span>
                 <span className="Pokecard-exp">Type: {pokemon.base_experience}</span>
             </div>
