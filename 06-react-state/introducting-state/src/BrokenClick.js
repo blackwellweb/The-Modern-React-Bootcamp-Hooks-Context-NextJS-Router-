@@ -4,12 +4,16 @@ class BrokenClick extends Component {
     constructor(props) {
         super(props);
         this.state = {clicked: false}
+        this.handleClick = this.handleClick.bind(this); // Setting the context of handleClick by binding this
+    }
+    handleClick(e){
+        this.setState({clicked: true});
     }
     render() {
         return (
             <div>
                 <h1>{this.state.clicked ? 'Clicked!!!' : 'Not Clicked'}</h1>
-                <button>Click Me!</button>
+                <button onClick={this.handleClick}>Click Me!</button>
             </div>
         )
     }
