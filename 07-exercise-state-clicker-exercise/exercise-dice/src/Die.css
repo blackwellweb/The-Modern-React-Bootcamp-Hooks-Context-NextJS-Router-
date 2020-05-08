@@ -1,9 +1,31 @@
-/* .Die {
 
-} */
+.Die--roll-animation {
+    animation: roll .5s cubic-bezier(0.22, 1, 0.36, 1);
+    /* animation-fill-mode: forwards; */
+}
+
+@keyframes roll {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-24px) rotate(-20deg);
+    }
+    50% {
+        transform: translateX(0) rotate(10deg);
+    }
+    75% {
+        transform: translateX(-24px) rotate(-20deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0);
+    }
+  }
+
 
 .Die__icon {
     color: #7B6CD3;
     font-size: 10rem;
     padding: .8rem;
 }
+

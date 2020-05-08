@@ -15,7 +15,6 @@ class RollDice extends Component {
         this.state = {
             dieOne: 'one',
             dieTwo: 'two',
-            isPlaying: false
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -37,13 +36,7 @@ class RollDice extends Component {
         this.setState({
             dieOne: this.roll(this.props.faces),
             dieTwo: this.roll(this.props.faces),
-            isPlaying: true
         });
-
-        // Set animation to false after a few seconds
-        setTimeout(() => {
-            this.setState({ isPlaying: false });
-        }, 1000)
 
     }
 
@@ -53,8 +46,8 @@ class RollDice extends Component {
         return (
             <div className="RollDice">
                 <div className="RollDice__Dice">
-                    <Die face={this.state.dieOne} />
-                    <Die face={this.state.dieTwo} />
+                    <Die  face={this.state.dieOne} />
+                    <Die  face={this.state.dieTwo} />
                 </div>
                 <button className="RollDice__btn" onClick={this.handleClick}>Roll Dice!</button>
             </div>
