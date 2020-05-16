@@ -17,7 +17,7 @@ class Coin extends Component {
 
         return(
             <div className="Coin">
-                <img src ={image} alt=""></img>
+                <img src ={image} alt={this.props.face}></img>
             </div>
         );
     }
