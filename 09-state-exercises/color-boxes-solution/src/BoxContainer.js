@@ -11,10 +11,10 @@ class BoxContainer extends Component {
 
     render(){
         const boxes = Array.from({length: this.props.numBoxes}).map(
-            () => <Box />
+            () => <Box colors={this.props.allColors} />
         )
 
-        return <div colors={this.props.allColors} className="BoxContainer">{boxes}</div>
+        return <div className="BoxContainer">{boxes}</div>
     }
 }
 
