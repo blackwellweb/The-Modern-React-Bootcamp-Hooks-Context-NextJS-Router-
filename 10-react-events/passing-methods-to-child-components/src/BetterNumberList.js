@@ -20,7 +20,7 @@ class BetterNumberList extends Component {
   render() {
     // Key must be unique!
     let nums = this.state.nums.map(n => (
-      <BetterNumberItem value={n} remove={this.remove} />
+      <BetterNumberItem key={n}  value={n} remove={this.remove} />
     ));
 
     return (
