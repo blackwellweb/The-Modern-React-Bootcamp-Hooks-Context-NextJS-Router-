@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import NumberList from './NumberList';
+import BetterNumberList from './BetterNumberList';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      
+      <NumberList />
+      <BetterNumberList />
     </div>
   );
 }
