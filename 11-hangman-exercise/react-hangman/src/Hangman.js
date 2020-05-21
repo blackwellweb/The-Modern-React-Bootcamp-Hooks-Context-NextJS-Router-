@@ -12,13 +12,14 @@ import { generateId } from './helper';
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
   static defaultProps = {
+    maxGuesses: 6,
     maxWrong: 6,
     images: [img0, img1, img2, img3, img4, img5, img6]
   };
 
   constructor(props) {
     super(props);
-    this.state = { nWrong: 0, guessed: new Set(), answer: "apple" };
+    this.state = { nWrong: 0, guessed: new Set(), answer: "apple", lose: false };
     this.handleGuess = this.handleGuess.bind(this);
   }
 
@@ -39,10 +40,14 @@ class Hangman extends Component {
   */
   handleGuess(evt) {
     let ltr = evt.target.value;
+    
     this.setState(st => ({
       guessed: st.guessed.add(ltr),
-      nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
+      nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1),
     }));
+
+    this.setState({ lose: this.state.nWrong > this.props.maxGuesses ? true : false});
+
   }
 
   /** generateButtons: return array of letter buttons to render */
@@ -61,6 +66,7 @@ class Hangman extends Component {
 
   /** render: render game */
   render() {
+
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
