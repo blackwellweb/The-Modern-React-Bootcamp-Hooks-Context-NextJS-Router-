@@ -12,14 +12,13 @@ import { generateId } from './helper';
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
   static defaultProps = {
-    maxGuesses: 6,
     maxWrong: 6,
     images: [img0, img1, img2, img3, img4, img5, img6]
   };
 
   constructor(props) {
     super(props);
-    this.state = { nWrong: 0, guessed: new Set(), answer: "apple", lose: false };
+    this.state = { nWrong: 0, guessed: new Set(), answer: "apple" };
     this.handleGuess = this.handleGuess.bind(this);
   }
 
@@ -40,13 +39,12 @@ class Hangman extends Component {
   */
   handleGuess(evt) {
     let ltr = evt.target.value;
-    
+
     this.setState(st => ({
       guessed: st.guessed.add(ltr),
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1),
     }));
 
-    this.setState({ lose: this.state.nWrong > this.props.maxGuesses ? true : false});
 
   }
 
@@ -67,13 +65,29 @@ class Hangman extends Component {
   /** render: render game */
   render() {
 
+    let content;
+
+    if (this.state.nWrong < this.props.maxWrong) {
+      content =
+        <div className='Hangman'>
+          <h1>Hangman</h1>
+          <img src={this.props.images[this.state.nWrong]} />
+          <p className='Hangman-wrongGuesses'>Number wrong guesses {this.state.nWrong}</p>
+          <p className='Hangman-word'>{this.guessedWord()}</p>
+          <p className='Hangman-btns'>{this.generateButtons()}</p>
+        </div>
+    } else {
+      content =
+        <div className='Hangman'>
+          <h1>Hangman</h1>
+          <p className='Hangman-msg'>You lose</p>
+          <p className='Hangman-correctWord'>The correct word was {this.state.answer}</p>
+        </div>
+    }
+
     return (
-      <div className='Hangman'>
-        <h1>Hangman</h1>
-        <img src={this.props.images[this.state.nWrong]} />
-        <p className='Hangman-wrongGuesses'>Number wrong guesses {this.state.nWrong}</p>
-        <p className='Hangman-word'>{this.guessedWord()}</p>
-        <p className='Hangman-btns'>{this.generateButtons()}</p>
+      <div>
+        {content}
       </div>
     );
   }
