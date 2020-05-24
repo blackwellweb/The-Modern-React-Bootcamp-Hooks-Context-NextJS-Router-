@@ -42,6 +42,7 @@ class Board extends Component {
     // TODO: set initial state
     this.state = {
       hasWon: false,
+      board: this.createBoard()
     }
   }
 
@@ -54,10 +55,10 @@ class Board extends Component {
     // TODO: create array-of-arrays of true/false values
 
     // Don’t think this is the best way of doing it but I couldn’t get it to work any other way
+    // This will build a two-dimensional array for our board
     for (let i = 0; i < this.props.nrows; i++) {
       board.push([]);
     }
-
     board.forEach((item) => {
       for (let i = 0; i < this.props.ncols; i++) {
         item.push(randomBoolean[Math.floor(Math.random() * randomBoolean.length)]);
@@ -96,9 +97,23 @@ class Board extends Component {
 
   render() {
 
-    console.log(this.createBoard());
+
+    let renderBoard = this.state.board.map(row => (
+      <tr>
+        {row.map(col =>
+        <Cell isLit={col} />
+      )}
+      </tr>
+    ))
+
     return (
-      <h1>Test</h1>
+      <div className="Board">
+        <table>
+          <tbody>
+            {renderBoard}
+          </tbody>
+        </table>
+      </div>
     );
 
     // if the game is won, just show a winning msg & render nothing else
