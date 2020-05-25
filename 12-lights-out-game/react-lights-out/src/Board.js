@@ -97,32 +97,30 @@ class Board extends Component {
 
   render() {
 
-
-    let renderBoard = this.state.board.map(row => (
-      <tr>
-        {row.map(col =>
-        <Cell isLit={col} />
-      )}
-      </tr>
-    ))
-
-    return (
-      <div className="Board">
-        <table>
-          <tbody>
-            {renderBoard}
-          </tbody>
-        </table>
-      </div>
-    );
-
-    // if the game is won, just show a winning msg & render nothing else
+     // if the game is won, just show a winning msg & render nothing else
 
     // TODO
 
     // make table board
 
-    // TODO
+    let renderBoard = this.state.board.map(row => (
+      <tr>
+        {row.map(col =>
+          <Cell isLit={col} />
+        )}
+      </tr>
+    ));
+
+    return (
+      <div className="Board">
+        <table>
+          <tbody>
+            {this.state.hasWon ? <p>You have Won!</p> : renderBoard}
+          </tbody>
+        </table>
+      </div>
+    );
+
   }
 }
 
