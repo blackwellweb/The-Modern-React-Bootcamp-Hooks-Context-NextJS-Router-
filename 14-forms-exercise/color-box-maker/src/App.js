@@ -1,11 +1,12 @@
 import React from 'react';
+import BoxList from './BoxList';
 import './App.css';
-import Box from './Box'
+
 
 function App() {
   return (
     <div className="App">
-      <Box height={100} width={100}/>
+      <BoxList />
     </div>
   );
 }
