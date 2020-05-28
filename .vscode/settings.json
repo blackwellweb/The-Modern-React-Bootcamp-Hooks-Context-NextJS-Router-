@@ -16,6 +16,7 @@
         "ncols",
         "nrows",
         "nums",
-        "pokecard"
+        "pokecard",
+        "uuidv"
     ]
 }
