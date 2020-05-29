@@ -14,7 +14,7 @@ class NewBoxForm extends Component {
     handleSubmit(evt) {
         evt.preventDefault();
 
-        // This will pass the state (Height and width) up to the parent component BoxList.js and it will use it 
+        // This will pass the state (height and width) up to the parent component BoxList.js and it will use it 
         this.props.addBox(this.state);
 
         this.state = { height: '', width: '' }

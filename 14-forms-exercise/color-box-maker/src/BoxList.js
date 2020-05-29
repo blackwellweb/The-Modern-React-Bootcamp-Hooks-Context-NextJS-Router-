@@ -14,11 +14,12 @@ class BoxList extends Component {
             ]
         }
         this.addBox = this.addBox.bind(this);
+        this.removeBox = this.removeBox.bind(this);
     }
 
 
-    addBox(box){
-        let newBox = {...box, id: uuid()}
+    addBox(box) {
+        let newBox = { ...box, id: uuid() }
 
         this.setState(state => ({
             // Take all the old boxes, add in our new box and put it in a new array and set that to be the value of boxes
@@ -27,12 +28,28 @@ class BoxList extends Component {
         }));
     }
 
+    removeBox(index) {
+        this.state.boxes.forEach(box => {
+
+            if (box.id === index) {
+                // const newState = this.state.boxes.splice(this.boxes.indexOf(testBox, 1));
+                // this.setState(newState);
+                console.log(box.id);
+            }
+        });
+    }
 
 
     renderBoxes() {
         return (
             this.state.boxes.map(box => (
-                <Box key={box.id} height={box.height} width={box.width}/>
+                <Box
+                    key={box.id}
+                    height={box.height}
+                    width={box.width}
+                    removeBox={this.removeBox}
+                    index={box.id}
+                />
             ))
         )
     }
@@ -42,7 +59,7 @@ class BoxList extends Component {
     render() {
         return (
             <div className='BoxList'>
-                <NewBoxForm addBox={this.addBox}/>
+                <NewBoxForm addBox={this.addBox} />
                 {this.renderBoxes()}
             </div>
         )

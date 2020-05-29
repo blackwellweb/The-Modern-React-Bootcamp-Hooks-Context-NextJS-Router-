@@ -1,3 +1,12 @@
 .Box {
     margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Box-Custom {
+    background-color: #61dafb;
+    margin: 10px;
 }
