@@ -12,7 +12,7 @@ class Box extends Component {
 
 
     handleClick() {
-        this.props.removeBox(this.props.index);
+        this.props.removeBox(this.props.keyProp);
     }
 
 

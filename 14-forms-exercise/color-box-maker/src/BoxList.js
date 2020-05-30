@@ -28,13 +28,13 @@ class BoxList extends Component {
         }));
     }
 
-    removeBox(index) {
+    removeBox(key) {
+        // Loop over all boxes in the state, if key of the box that has been clicked on is the same as 
+        // one of the ID’s form the state removes that box from the state 
         this.state.boxes.forEach(box => {
-
-            if (box.id === index) {
-                // const newState = this.state.boxes.splice(this.boxes.indexOf(testBox, 1));
-                // this.setState(newState);
-                console.log(box.id);
+            if (box.id === key) {
+                const newState = this.state.boxes.splice(this.state.boxes.indexOf(box, 1));
+                this.setState(newState);
             }
         });
     }
@@ -48,7 +48,7 @@ class BoxList extends Component {
                     height={box.height}
                     width={box.width}
                     removeBox={this.removeBox}
-                    index={box.id}
+                    keyProp={box.id}
                 />
             ))
         )
