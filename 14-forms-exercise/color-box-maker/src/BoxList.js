@@ -29,6 +29,7 @@ class BoxList extends Component {
     }
 
     removeBox(key) {
+        // This method will be passed into the Box component as a prop 
         // Loop over all boxes in the state, if key of the box that has been clicked on is the same as 
         // one of the ID’s form the state removes that box from the state 
         this.state.boxes.forEach(box => {
