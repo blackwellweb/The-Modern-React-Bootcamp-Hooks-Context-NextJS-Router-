@@ -5,7 +5,7 @@ class NewBoxForm extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { height: '', width: '' }
+        this.state = { height: '', width: '' , bgColor: ''}
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -17,7 +17,7 @@ class NewBoxForm extends Component {
         // This will pass the state (height and width) up to the parent component BoxList.js and it will use it 
         this.props.addBox(this.state);
 
-        this.setState({ height: '', width: '' });
+        this.setState({ height: '', width: '' , bgColor: ''});
     }
 
     handleChange(evt) {
@@ -43,6 +43,13 @@ class NewBoxForm extends Component {
                     id="width"
                     name="width"
                     value={this.state.width}
+                    onChange={this.handleChange}
+                />
+                <label htmlFor="">Box Colour:</label>
+                <input
+                    id="bgColor"
+                    name="bgColor"
+                    value={this.state.bgColor}
                     onChange={this.handleChange}
                 />
                 <button>Make a new box</button>

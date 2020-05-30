@@ -48,6 +48,7 @@ class BoxList extends Component {
                     key={box.id}
                     height={box.height}
                     width={box.width}
+                    bgColor={box.bgColor}
                     removeBox={this.removeBox}
                     keyProp={box.id}
                 />

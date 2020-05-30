@@ -4,6 +4,10 @@ import './Box.css';
 
 class Box extends Component {
 
+    static defaultProps = {
+        defaultBgColor: '#61dafb'
+      };
+
 
     constructor(props) {
         super(props);
@@ -18,10 +22,10 @@ class Box extends Component {
 
     render() {
 
-
         const boxStyles = {
             height: `${this.props.height}px`,
             width: `${this.props.width}px`,
+            backgroundColor: `${this.props.bgColor ? this.props.bgColor : this.props.defaultBgColor}`
         }
 
         return (
