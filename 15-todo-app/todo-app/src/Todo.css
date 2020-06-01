@@ -1,0 +1,13 @@
+.Todo {
+    display: flex;
+    padding: 12px;
+}
+
+.Todo__edit {
+    margin-left: auto;
+}
+
+
+.Todo__edit, .Todo__remove {
+    padding-left: 8px;
+}
