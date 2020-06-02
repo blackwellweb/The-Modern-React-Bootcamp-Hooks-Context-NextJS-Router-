@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { v4 as uuid } from 'uuid';
 import './TodoForm.css';
 
 class TodoForm extends Component {
@@ -21,6 +22,8 @@ class TodoForm extends Component {
         evt.preventDefault();
 
         // Make new task/Todo, this will be passed in as a prop
+        const newTask = {...this.state, id: uuid()}
+        this.props.createTask(newTask)
         this.setState({ task: '' });
 
     }
