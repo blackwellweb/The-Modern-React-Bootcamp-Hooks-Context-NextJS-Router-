@@ -17,8 +17,7 @@ class Todo extends Component {
     }
 
     handleRemove(evt){
-        // This will run a method passed in as a prop by the parent component 
-        console.log('I was removed');
+        this.props.removeTask(this.props.id);
     }
 
     render(){
