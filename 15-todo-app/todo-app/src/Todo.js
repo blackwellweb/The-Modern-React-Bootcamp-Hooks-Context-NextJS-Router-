@@ -24,7 +24,7 @@ class Todo extends Component {
     render(){
         return(
             <div className="Todo">
-                <span>{this.props.task}</span>
+                <span>{this.props.text}</span>
                 <i onClick={this.handleEdit} className="fas fa-pen Todo__edit"></i>
                 <i onClick={this.handleRemove} className="fas fa-dumpster Todo__remove"></i>
             </div>
