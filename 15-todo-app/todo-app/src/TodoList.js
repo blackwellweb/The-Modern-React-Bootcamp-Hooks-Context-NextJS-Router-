@@ -5,9 +5,9 @@ import TodoForm from './TodoForm';
 
 class TodoList extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {tasks: [] };
+        this.state = { tasks: [] };
         this.create = this.create.bind(this);
         this.remove = this.remove.bind(this)
     }
@@ -15,7 +15,7 @@ class TodoList extends Component {
 
     create(task) {
         this.setState({
-            tasks : [...this.state.tasks, task]
+            tasks: [...this.state.tasks, task]
         });
     }
 
@@ -27,25 +27,25 @@ class TodoList extends Component {
     }
 
 
-    render(){
+    render() {
 
-        const tasks = this.state.tasks.map(task => 
-            <Todo 
-            key={task.id}
-            id={task.id}
-            text={task.task}
-            removeTask={this.remove}
+        const tasks = this.state.tasks.map(task =>
+            <Todo
+                key={task.id}
+                id={task.id}
+                text={task.task}
+                removeTask={this.remove}
             />
         );
 
 
 
-        return(
+        return (
             <div className="TodoList">
                 <h1>Todo List!</h1>
                 <p>A simple React Todo List App</p>
                 {tasks}
-                <TodoForm createTask={this.create}/>
+                <TodoForm createTask={this.create} />
             </div>
         )
     }

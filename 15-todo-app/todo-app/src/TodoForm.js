@@ -22,7 +22,7 @@ class TodoForm extends Component {
         evt.preventDefault();
 
         // Make new task/Todo, this will be passed in as a prop
-        const newTask = {...this.state, id: uuid()}
+        const newTask = { ...this.state, id: uuid() }
         this.props.createTask(newTask)
         this.setState({ task: '' });
 
