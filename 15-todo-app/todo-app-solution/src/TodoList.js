@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NewTodoForm from './NewTodoForm';
 import Todo from './Todo';
 
 class TodoList extends Component {
@@ -18,9 +19,8 @@ class TodoList extends Component {
         return (
             <div>
                 <h1>Todo List!</h1>
-                <ul>
-                    {todos}
-                </ul>
+                <NewTodoForm />
+                <ul>{todos}</ul>
             </div>
         )
     }
