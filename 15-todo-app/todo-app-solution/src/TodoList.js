@@ -10,6 +10,7 @@ class TodoList extends Component {
 
         this.create = this.create.bind(this);
         this.remove = this.remove.bind(this);
+        this.update = this.update.bind(this);
     }
 
     create(newTodo) {
@@ -24,13 +25,34 @@ class TodoList extends Component {
         });
     }
 
+    update(id, updatedTask){
+        const updatedTodos = this.state.todos.map(todo => {
+            // If todo.id is the same as the id we are looking for return the existing todo but update its task
+            // as we do not want to change anything else like the id etc ..
+            // otherwise return the todo unchanged
+            if(todo.id === id) {
+                return {...todo, task: updatedTask}
+            }
+            return todo;
+        });
+
+        this.setState({todos: updatedTodos});
+    }
 
 
 
     render() {
 
         const todos = this.state.todos.map(todo => {
-            return <Todo key={todo.id} id={todo.id} task={todo.task} removeTodo={this.remove}/>
+            return (
+            <Todo 
+            key={todo.id} 
+            id={todo.id} 
+            task={todo.task} 
+            removeTodo={this.remove}
+            updateTodo={this.update}
+            />
+            )
         });
 
 
