@@ -4,30 +4,40 @@ import Todo from './Todo';
 
 class TodoList extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {todos: [{task: 'Walk the fish'}, {task: 'Groom Chickens'}]};
+        this.state = { todos: [] };
 
         this.create = this.create.bind(this);
+        this.remove = this.remove.bind(this);
     }
 
-    create(newTodo){
+    create(newTodo) {
         this.setState({
             todos: [...this.state.todos, newTodo]
         })
     }
 
-    render(){
+    remove(id) {
+        this.setState({
+            todos: this.state.todos.filter(t => t.id !== id)
+        });
+    }
+
+
+
+
+    render() {
 
         const todos = this.state.todos.map(todo => {
-            return <Todo task={todo.task} />
+            return <Todo key={todo.id} id={todo.id} task={todo.task} removeTodo={this.remove}/>
         });
 
 
         return (
             <div>
                 <h1>Todo List!</h1>
-                <NewTodoForm createTodo={this.create}/>
+                <NewTodoForm createTodo={this.create} />
                 <ul>{todos}</ul>
             </div>
         )
