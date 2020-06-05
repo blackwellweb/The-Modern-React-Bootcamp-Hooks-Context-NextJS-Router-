@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import './Todo.css';
 
 class Todo extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {isEditing: false , task: this.props.task}
+        this.state = { isEditing: false, task: this.props.task }
 
         this.handleRemove = this.handleRemove.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
 
@@ -19,22 +21,26 @@ class Todo extends Component {
     }
 
 
-    toggleForm(){
+    toggleForm() {
         // All we are doing is setting editing to be the opposite of whatever it is
-        this.setState({ isEditing: !this.state.isEditing})
+        this.setState({ isEditing: !this.state.isEditing })
     }
 
     handleUpdate(evt) {
         evt.preventDefault();
         // Take new task data and pass up to parent
         this.props.updateTodo(this.props.id, this.state.task);
-        this.setState({isEditing: false});
+        this.setState({ isEditing: false });
     }
 
     handleChange(evt) {
         this.setState({
             [evt.target.name]: evt.target.value
         });
+    }
+
+    handleToggle(evt){
+        this.props.toggleTodo(this.props.id);
     }
 
     render() {
@@ -44,11 +50,11 @@ class Todo extends Component {
             result = (
                 <div>
                     <form onSubmit={this.handleUpdate}>
-                        <input 
-                        type="text" 
-                        value={this.state.task}
-                        name="task"
-                        onChange={this.handleChange}
+                        <input
+                            type="text"
+                            value={this.state.task}
+                            name="task"
+                            onChange={this.handleChange}
                         />
                         <button>Save</button>
                     </form>
@@ -59,7 +65,7 @@ class Todo extends Component {
                 <div>
                     <button onClick={this.toggleForm}>Edit</button>
                     <button onClick={this.handleRemove}>x</button>
-                    <li>{this.props.task}</li>
+                    <li className={this.props.completed ? 'completed' : ''} onClick={this.handleToggle}>{this.props.task}</li>
                 </div>
             )
         }
