@@ -26,7 +26,8 @@ class Deck extends Component {
     async getNewCard() {
         const id = this.state.deckID;
         axios.get(`https://deckofcardsapi.com/api/deck/${id}/draw/`).then(response => {
-            const newCard = response.data.cards[0].image;
+            const newCard = response.data.cards[0];
+
 
             this.setState(curState => {
                 return {
@@ -51,15 +52,14 @@ class Deck extends Component {
 
     render() {
 
-        // this.state.cards.forEach(card => {
-        //     console.log(card)
-        // });
-
+    
         const cards = this.state.cards.map(card => {
             return(
                 <Card 
                 key={uuid()}
-                cardUrl={card}
+                cardImage={card.image}
+                value={card.value}
+                suit={card.suit}
                 />
             )
         });
