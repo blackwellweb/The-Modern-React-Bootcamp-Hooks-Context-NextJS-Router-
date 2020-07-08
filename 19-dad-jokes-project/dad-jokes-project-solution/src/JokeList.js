@@ -14,6 +14,8 @@ class JokeList extends Component {
         super(props);
         // Get this from localStorage if nothing is there pass in an empty array
         this.state = { jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]") };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
 
@@ -31,9 +33,11 @@ class JokeList extends Component {
             });
             jokes.push({ id: uuid(), text: res.data.joke, votes: 0 });
         }
-        this.setState({ jokes: jokes });
+        this.setState( st => ({
+            jokes: [...st.jokes, ...jokes]
+        }),
+        () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes)));
 
-        window.localStorage.setItem("jokes", JSON.stringify(jokes));
     }
 
 
@@ -52,7 +56,14 @@ class JokeList extends Component {
             jokes: st.jokes.map(j =>
                 j.id === id ? { ...j, votes: j.votes + delta } : j
             )
-        }))
+        }),
+        () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+        );
+    }
+
+
+    handleClick() {
+        this.getJokes();
     }
 
 
@@ -64,7 +75,7 @@ class JokeList extends Component {
                         <span>Dad</span> Jokes
                     </h1>
                     <img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" alt="image of a laughing emoji" />
-                    <button className="JokeList-getmore">New Joke</button>
+                    <button className="JokeList-getmore" onClick={this.handleClick}>New Joke</button>
                 </div>
                 <div className="JokeList-jokes">
                     {this.state.jokes.map(j => (
