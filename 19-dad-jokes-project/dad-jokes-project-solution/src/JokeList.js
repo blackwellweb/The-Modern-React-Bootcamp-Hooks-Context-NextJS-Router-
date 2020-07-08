@@ -12,11 +12,17 @@ class JokeList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { jokes: [] };
+        // Get this from localStorage if nothing is there pass in an empty array
+        this.state = { jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]") };
     }
 
 
-    async componentDidMount() {
+    componentDidMount() {
+        if (this.state.jokes.length === 0) this.getJokes();
+    }
+
+
+    async getJokes() {
         // Load Jokes 
         let jokes = [];
         while (jokes.length < this.props.numJokeToGet) {
@@ -26,6 +32,8 @@ class JokeList extends Component {
             jokes.push({ id: uuid(), text: res.data.joke, votes: 0 });
         }
         this.setState({ jokes: jokes });
+
+        window.localStorage.setItem("jokes", JSON.stringify(jokes));
     }
 
 
@@ -55,7 +63,7 @@ class JokeList extends Component {
                     <h1 className="JokeList-title">
                         <span>Dad</span> Jokes
                     </h1>
-                    <img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" alt="image of a laughing emoji"/>
+                    <img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" alt="image of a laughing emoji" />
                     <button className="JokeList-getmore">New Joke</button>
                 </div>
                 <div className="JokeList-jokes">
@@ -65,7 +73,7 @@ class JokeList extends Component {
                             votes={j.votes}
                             text={j.text}
                             upvote={() => this.handleVote(j.id, 1)}
-                            downvote={() => this.handleVote(j.id, -1)} 
+                            downvote={() => this.handleVote(j.id, -1)}
                         />
                     ))}
                 </div>
