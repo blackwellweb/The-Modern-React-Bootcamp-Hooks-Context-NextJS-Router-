@@ -95,7 +95,6 @@ class JokeList extends Component {
     render() {
 
 
-
         if (this.state.loading) {
             return (
                 <div className="JokeList-spinner">
@@ -105,7 +104,8 @@ class JokeList extends Component {
             )
         }
 
-
+        // This will sort the jokes from highest to lowest based on their votes
+        let jokes = this.state.jokes.sort((a,b) => b.votes - a.votes);
 
         return (
             <div className="JokeList">
@@ -117,7 +117,7 @@ class JokeList extends Component {
                     <button className="JokeList-getmore" onClick={this.handleClick}>New Joke</button>
                 </div>
                 <div className="JokeList-jokes">
-                    {this.state.jokes.map(j => (
+                    {jokes.map(j => (
                         <Joke
                             key={j.id}
                             votes={j.votes}
