@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, NavLink } from 'react-router-dom';
 import About from './About';
 import Contact from './Contact';
 import Dog from './Dog';
@@ -13,12 +13,20 @@ function App() {
   return (
     <div className="App">
       <nav className="App-nav">
-        <Link to="/">About</Link>
+
+
+        {/* <NavLink> is just like link, but with one additional feature, if at a page that link would go to the <a> gets a CSS class of active  */}
+        <NavLink exact activeClassName="active-link"to="/">About</NavLink>
+        <NavLink exact activeClassName="active-link"to="/dog">Dog</NavLink>
+        <NavLink exact activeClassName="active-link"to="/contact">Contact</NavLink>
+
+
+        {/* <Link to="/">About</Link>
         <Link to="/dog">Dog</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/contact">Contact</Link> */}
 
 
-        {/* We don’t use the ‘a’ tag because we it will send a GET request to the server re-loading the page so un-link Link with will load in the Data client side  */}
+        {/* We DON'T use the ‘a’ tag because we it will send a GET request to the server re-loading the page so un-link Link with will load in the Data client side  */}
         {/* <a href='/'>About</a>
         <a href='/dog'>Dog</a>
         <a href='/contact'>Contact</a> */}
