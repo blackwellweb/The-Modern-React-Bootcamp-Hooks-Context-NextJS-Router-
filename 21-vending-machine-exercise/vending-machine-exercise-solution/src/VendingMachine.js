@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Message from './Message';
 
 class VendingMachine extends Component {
-    render(){
-        return(
+    render() {
+        return (
             <div className="VendingMachine">
                 <h1>I am the  VendingMachine</h1>
                 <Link exact to="/soda">Soda</Link>
                 <Link exact to="/chips">Chips</Link>
                 <Link exact to="/sardines">Sardines</Link>
+                <Message />
             </div>
         )
     }
