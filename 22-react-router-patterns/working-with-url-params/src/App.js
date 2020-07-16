@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Food from './Food';
+import Meal from './Meal';
 import './App.css';
 
 
@@ -12,6 +13,12 @@ function App() {
 
       {/* this will do the same as above but you will not be able to pass in additional props for example component={Food, authenticated="true"} will NOT work*/}
       {/* <Route exact path="/food/:name" component={Food} />  */}
+
+
+      {/* Multiple Route Params */}
+      <Route exact path='/food/:foodName/drink/:drinkName' render={(routeProps) => <Meal {...routeProps} />}/>
+
+
     </div>
   );
 }
