@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import FoodSearch from './FoodSearch';
 import Food from './Food';
 import Meal from './Meal';
 import './App.css';
@@ -11,7 +12,7 @@ function App() {
 
       <Switch>
 
-        <Route exact path="/" render={() => <h1>Home Page</h1>}/>
+        <Route exact path="/" render={() => <FoodSearch />} />
 
 
         {/* {...routeProps} will extract the items match, location and history and pass them down as three separate props to our Food component  */}
