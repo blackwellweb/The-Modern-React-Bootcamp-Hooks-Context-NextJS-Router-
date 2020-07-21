@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import FoodSearch from './FoodSearch';
 import Food from './Food';
 import Meal from './Meal';
+import Navbar from './Navbar';
 import './App.css';
 
 
@@ -10,8 +11,9 @@ function App() {
   return (
     <div className="App">
 
-      <Switch>
+      <Navbar />
 
+      <Switch>
         <Route exact path="/" render={(routeProps) => <FoodSearch {...routeProps}/>} />
 
         {/* This is the same as the route above */}
@@ -30,8 +32,6 @@ function App() {
 
         {/* 404 Page not Found */}
         <Route render={() => <h1>Error not found!!</h1>} />
-
-
       </Switch>
 
     </div>
