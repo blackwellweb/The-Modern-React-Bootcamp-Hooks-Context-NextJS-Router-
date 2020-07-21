@@ -12,7 +12,10 @@ function App() {
 
       <Switch>
 
-        <Route exact path="/" render={() => <FoodSearch />} />
+        <Route exact path="/" render={(routeProps) => <FoodSearch {...routeProps}/>} />
+
+        {/* This is the same as the route above */}
+        {/* <Route exact path="/" component={Meal} /> */}
 
 
         {/* {...routeProps} will extract the items match, location and history and pass them down as three separate props to our Food component  */}
