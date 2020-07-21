@@ -7,6 +7,7 @@ class Navbar extends Component {
     constructor(props) {
         super(props);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleBack = this.handleBack.bind(this);
     }
 
 
@@ -15,10 +16,15 @@ class Navbar extends Component {
         this.props.history.push('/food/salmon');
     }
 
+    handleBack() {
+        this.props.history.goBack();
+    }
+
     render() {
         return (
             <div className="Navbar">
                 <button onClick={this.handleLogin}>Login</button>
+                <button onClick={this.handleBack}>Go back</button>
             </div>
         )
     }
