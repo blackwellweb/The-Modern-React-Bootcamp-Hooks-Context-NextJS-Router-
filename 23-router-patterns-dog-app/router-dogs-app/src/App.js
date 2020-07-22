@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import NavBAr from './Navbar';
 import Dogs from './Dogs';
+import Dog from './Dog';
 import './App.css';
 
 
@@ -44,8 +45,9 @@ class App extends Component {
 
   render() {
 
-
-
+    const renderEachDog = this.props.dogs.map(dog => 
+        <Route exact path={`/${dog.name}`} render={(routeProps) => <Dog {...routeProps} data={dog}/>} />
+    );
 
     return (
       <div className="App">
@@ -55,6 +57,7 @@ class App extends Component {
           </Route>
           <Route exact path="/dogs" render={(routeProps) => <Dogs {...routeProps} data={this.props.dogs}/>} />
         </Switch>
+        {renderEachDog}
       </div>
     );
   }
