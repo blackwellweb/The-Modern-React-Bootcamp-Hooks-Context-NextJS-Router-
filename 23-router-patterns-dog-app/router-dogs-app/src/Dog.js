@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import './Dog.css';
 
 
 class Dog extends Component {
@@ -24,7 +25,7 @@ class Dog extends Component {
 
         return (
             <div className="Dog">
-                <img src={data.src} alt={`${data.name} the dog`}/>
+                <img className="Dog__img" src={data.src} alt={`${data.name} the dog`}/>
                 <h1>{data.name}</h1>
                 <h2>{data.age}</h2>
                 {facts}
