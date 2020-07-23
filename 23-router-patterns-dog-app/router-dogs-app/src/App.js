@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 import NavBAr from './Navbar';
 import Dogs from './Dogs';
 import Dog from './Dog';
 import './App.css';
+import hazelImg from './imgs/hazel.jpg';
+import tubbyImg from './imgs/tubby.jpg';
+import whiskeyImg from './imgs/whiskey.jpg';
+
 
 
 class App extends Component {
@@ -13,7 +18,7 @@ class App extends Component {
       {
         name: "Whiskey",
         age: 5,
-        src: 'imgs/whiskey.jpg',
+        src: whiskeyImg,
         facts: [
           "Whiskey loves eating popcorn.",
           "Whiskey is a terrible guard dog.",
@@ -23,7 +28,7 @@ class App extends Component {
       {
         name: "Hazel",
         age: 3,
-        src: 'imgs/hazel.jpg',
+        src: hazelImg,
         facts: [
           "Hazel has soooo much energy!",
           "Hazel is highly intelligent.",
@@ -33,7 +38,7 @@ class App extends Component {
       {
         name: "Tubby",
         age: 4,
-        src: 'imgs/tubby.jpg',
+        src: tubbyImg,
         facts: [
           "Tubby is not the brightest dog",
           "Tubby does not like walks or exercise.",
@@ -45,19 +50,19 @@ class App extends Component {
 
   render() {
 
-    const renderEachDog = this.props.dogs.map(dog => 
-        <Route exact path={`/${dog.name}`} render={(routeProps) => <Dog {...routeProps} data={dog}/>} />
+    const renderEachDog = this.props.dogs.map(dog =>
+      <Route exact path={`/${dog.name}`} render={(routeProps) => <Dog {...routeProps} data={dog} key={uuid()}/>} />
     );
 
     return (
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Redirect to="/dogs" /> 
+            <Redirect to="/dogs" />
           </Route>
-          <Route exact path="/dogs" render={(routeProps) => <Dogs {...routeProps} data={this.props.dogs}/>} />
+          <Route exact path="/dogs" render={(routeProps) => <Dogs {...routeProps} data={this.props.dogs} key={uuid()}/>} />
+          {renderEachDog}
         </Switch>
-        {renderEachDog}
       </div>
     );
   }
