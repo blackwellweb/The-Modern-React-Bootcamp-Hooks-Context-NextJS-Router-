@@ -1,0 +1,9 @@
+.Navbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.Navbar-active {
+    color: deepskyblue;
+}

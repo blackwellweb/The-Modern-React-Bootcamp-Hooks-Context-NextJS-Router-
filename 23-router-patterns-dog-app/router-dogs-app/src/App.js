@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import NavBAr from './Navbar';
+import NavBar from './Navbar';
 import Dogs from './Dogs';
 import Dog from './Dog';
 import './App.css';
@@ -56,6 +56,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <NavBar links={this.props.dogs}/>
         <Switch>
           <Route exact path="/">
             <Redirect to="/dogs" />
