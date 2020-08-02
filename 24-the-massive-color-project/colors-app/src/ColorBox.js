@@ -6,7 +6,7 @@ import './ColorBox.css';
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
-    colorBox: {
+    ColorBox: {
         width: "20%",
         height: props => props.showingFullPalette ? "25%" : "50%",
         margin: "0 auto",
@@ -140,7 +140,7 @@ class ColorBox extends Component {
 
         return (
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
-                <div className={classes.colorBox} style={{ background }}>
+                <div className={classes.ColorBox} style={{ background }}>
                     <div className={`${classes.copyOverlay} ${copied && classes.showOverlay}`} style={{ background }} />
                     <div className={`${classes.copyMessage} ${copied && classes.showMessage}`}>
                         <h1>copied!</h1>
