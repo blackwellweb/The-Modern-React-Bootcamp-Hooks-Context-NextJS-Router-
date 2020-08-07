@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button"
 import DraggleColorList from "./DraggableColorList";
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { ChromePicker } from 'react-color';
+import arrayMove from 'array-move';
 
 
 const drawerWidth = 400;
@@ -92,6 +93,7 @@ class NewPaletteForm extends Component {
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.removeColor = this.removeColor.bind(this);
     }
 
     componentDidMount() {
@@ -106,10 +108,10 @@ class NewPaletteForm extends Component {
             )
         );
         ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
-        this.props.palettes.every(
-            ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-        )
-    );
+            this.props.palettes.every(
+                ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+            )
+        );
     }
 
     handleDrawerOpen = () => {
@@ -155,6 +157,12 @@ class NewPaletteForm extends Component {
         });
     }
 
+    onSortEnd = ({oldIndex, newIndex}) => {
+        this.setState(({colors}) => ({
+          colors: arrayMove(colors, oldIndex, newIndex),
+        }));
+    };
+
     render() {
         const { classes } = this.props;
         const { open } = this.state;
@@ -189,7 +197,7 @@ class NewPaletteForm extends Component {
                                     value={this.state.newPaletteName}
                                     name='newPaletteName'
                                     onChange={this.handleChange}
-                                    validators={['required','isPaletteNameUnique']}
+                                    validators={['required', 'isPaletteNameUnique']}
                                     errorMessages={['Enter Palette Name', 'Name already used']}
                                 />
                                 <Button
@@ -255,7 +263,12 @@ class NewPaletteForm extends Component {
                         })}
                     >
                         {/* <div className={classes.drawerHeader} /> */}
-                        <DraggleColorList colors={this.state.colors} removeColor={this.removeColor}/>
+                        <DraggleColorList
+                            colors={this.state.colors}
+                            removeColor={this.removeColor}
+                            axis='xy'
+                            onSortEnd={this.onSortEnd}
+                        />
                     </main>
                 </div>
             </div>
