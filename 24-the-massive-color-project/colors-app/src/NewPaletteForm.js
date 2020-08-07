@@ -86,12 +86,13 @@ class NewPaletteForm extends Component {
             open: true,
             currentColor: "teal",
             newColorName: "",
-            colors: [{ color: "blue", name: "blue" }],
+            colors: this.props.palettes[0].colors,
             newPaletteName: ""
         };
         this.updateCurrentColor = this.updateCurrentColor.bind(this);
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.clearColors = this.clearColors.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.removeColor = this.removeColor.bind(this);
     }
@@ -140,6 +141,10 @@ class NewPaletteForm extends Component {
         });
     }
 
+    clearColors() {
+        this.setState({ colors: [] });
+    }
+
     handleSubmit() {
         let newName = this.state.newPaletteName;
         const newPalette = {
@@ -157,11 +162,13 @@ class NewPaletteForm extends Component {
         });
     }
 
-    onSortEnd = ({oldIndex, newIndex}) => {
-        this.setState(({colors}) => ({
-          colors: arrayMove(colors, oldIndex, newIndex),
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        this.setState(({ colors }) => ({
+            colors: arrayMove(colors, oldIndex, newIndex),
         }));
     };
+
+
 
     render() {
         const { classes } = this.props;
@@ -227,7 +234,7 @@ class NewPaletteForm extends Component {
                         <Divider />
                         <Typography variant="h4">Design your Palette</Typography>
                         <div>
-                            <Button variant="contained" color="secondary">Clear Palette</Button>
+                            <Button variant="contained" color="secondary" onClick={this.clearColors}>Clear Palette</Button>
                             <Button variant="contained" color="primary">Random Color</Button>
                         </div>
                         <Divider />
