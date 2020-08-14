@@ -89,6 +89,15 @@ class App extends Component {
                   </Page>
                 )}
               />
+              
+              {/* this will act as your 404 by taking the user to the PaletteList route is they enter a random url */}
+              <Route
+                render={routeProps => (
+                  <Page>
+                    <PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette} {...routeProps} />
+                  </Page>
+                )}
+              />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
