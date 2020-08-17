@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -14,12 +15,16 @@ export default function TodoApp() {
         { id: 1, task: 'Grow beard', completed: false }
     ]
     const [todos, setTodos] = useState(initialTodos);
+
+    const addTodo = newTodoText => {
+        setTodos([...todos, { id: 4, task: newTodoText, completed: false }])
+    }
     return (
         <Paper style={{
             padding: 0,
             margin: 0,
             height: '100vh',
-            backgroundColor: 'fafafa'
+            backgroundColor: '#fafafa'
         }}
             elevation={0}
         >
@@ -28,6 +33,7 @@ export default function TodoApp() {
                     <Typography color='initial'>Todo with hooks</Typography>
                 </Toolbar>
             </AppBar>
+            <TodoForm addTodo={addTodo} />
             <TodoList todos={todos} />
         </Paper>
     )
