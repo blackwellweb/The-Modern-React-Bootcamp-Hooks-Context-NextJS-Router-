@@ -12,7 +12,6 @@ export default function TodoForm({ addTodo }) {
                 addTodo(value);
                 reset();
             }}>
-                {value}
                 <TextField 
                 value={value}
                  onChange={handleChange}  
