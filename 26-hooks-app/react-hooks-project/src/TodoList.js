@@ -6,6 +6,7 @@ import Todo from './Todo';
 
 
 export default function TodoList({todos, removeTodo, toggleTodo, editTodo}) {
+    if(todos.length)
     return (
         <Paper>
             <List>
@@ -25,5 +26,6 @@ export default function TodoList({todos, removeTodo, toggleTodo, editTodo}) {
                 ))}
             </List>
         </Paper>
-    )
+    );
+    return null;
 }
