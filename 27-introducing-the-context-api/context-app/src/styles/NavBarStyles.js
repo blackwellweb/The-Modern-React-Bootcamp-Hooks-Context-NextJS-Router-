@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { fade } from "@material-ui/core/styles/colorManipulator";
 const styles = theme => ({
     root: {
         width: "100%",
@@ -19,9 +19,9 @@ const styles = theme => ({
     },
     search: {
         position: "relative",
-        boarderRadius: theme.shape.boarderRadius,
+        borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
-        "&: hover": {
+        "&:hover": {
             backgroundColor: fade(theme.palette.common.white, 0.25)
         },
         marginLeft: 0,
@@ -47,7 +47,15 @@ const styles = theme => ({
         paddingTop: theme.spacing.unit,
         paddingRight: theme.spacing.unit,
         paddingBottom: theme.spacing.unit,
-        paddingLeft: theme.spacing.unit
+        paddingLeft: theme.spacing.unit * 10,
+        transition: theme.transitions.create("width"),
+        width: "100%",
+        [theme.breakpoints.up("sm")]: {
+            width: 120,
+            "&:focus": {
+                width: 200
+            }
+        }
     }
 });
 
