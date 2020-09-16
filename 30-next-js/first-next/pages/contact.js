@@ -1,4 +1,5 @@
 const ContactPage = () => {
+    console.log('Im the Contact component');
     return (
         <div>
             <h1>Contact page</h1>
