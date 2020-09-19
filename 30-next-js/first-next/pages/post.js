@@ -19,16 +19,37 @@
 
 
 const Post = (props) => {
-    const {id} = props.query;
+    const { id, comments } = props;
     return (
-    <h1>Post Page # {id}</h1>
+        <div>
+            <h1>Post Page #{id}</h1>
+            {comments.map(comment => (
+                <Comment {...comment} key={comment.id}/>
+            ))}
+        </div>
     );
 };
 
 
+// This could be its own component
+const Comment = ({ email, body }) => (
+    <div>
+        <h5>{email}</h5>
+        <p>{body}</p>
+    </div>
+)
+
+
+
 // This gets called on every request
-export async function getServerSideProps({query}) {
-    return { props: { query }};
+export async function getServerSideProps({ query }) {
+
+    // Fetch data from external API
+    const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${query.id}`);
+    const data = await res.json();
+
+    // Pass data to the page via props
+    return { props: { ...query, comments: data } };
 }
 
 
